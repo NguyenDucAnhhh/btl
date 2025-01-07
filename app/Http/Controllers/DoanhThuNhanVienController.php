@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DoanhThuNhanVien;
+use Illuminate\Support\Facades\DB;
 class DoanhThuNhanVienController extends Controller
 {
     /**
@@ -12,6 +13,9 @@ class DoanhThuNhanVienController extends Controller
     public function index()
     {
         $doanhThuNhanVien=DoanhThuNhanVien::all();
+
+        $doanhThuNhanVien = DB::select('select * from view_DoanhThuNhanVien order by tongdoanhthu desc');
+        
         return view('thongke.doanhThuNhanVien',compact('doanhThuNhanVien'));
     }
 
